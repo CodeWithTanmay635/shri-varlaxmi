@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  allowedDevOrigins: [
+    "oops-tract-americas-travesti.trycloudflare.com",
+    "localhost:3000"
+  ]
 };
 
 export default nextConfig;
