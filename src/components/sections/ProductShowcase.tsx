@@ -146,15 +146,26 @@ export default function ProductShowcase() {
             </div>
 
             <div className="pt-2 flex gap-3">
-              <a
-                href={`https://wa.me/919845271830?text=I%20am%20interested%20in%20the%20${encodeURIComponent(activeProduct.name)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-grow py-3 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs tracking-wider transition-all flex items-center justify-center space-x-2 font-sans"
-              >
-                <FaWhatsapp className="w-4 h-4" />
-                <span>Inquire via WhatsApp</span>
-              </a>
+              <div className="flex flex-col flex-grow gap-2">
+                <a
+                  href={`https://wa.me/919341874222?text=I%20am%20interested%20in%20the%20${encodeURIComponent(activeProduct.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs tracking-wider transition-all flex items-center justify-center space-x-2 font-sans"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                  <span>Inquire (WA 1)</span>
+                </a>
+                <a
+                  href={`https://wa.me/919740423851?text=I%20am%20interested%20in%20the%20${encodeURIComponent(activeProduct.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs tracking-wider transition-all flex items-center justify-center space-x-2 font-sans"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                  <span>Inquire (WA 2)</span>
+                </a>
+              </div>
               <Link
                 href={`/collections/${activeProduct.category}`}
                 className="py-3 px-4 rounded-xl card-block text-xs text-page-primary transition-all font-semibold font-sans hover:text-accent"

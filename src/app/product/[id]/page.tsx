@@ -108,15 +108,26 @@ export default function ProductDetails() {
 
             {/* WhatsApp Inquiry */}
             <div className="pt-4 section-border-t">
-              <a
-                href={`https://wa.me/919845271830?text=I%20am%20interested%20in%20the%20${encodeURIComponent(product.name)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
-              >
-                <FaWhatsapp className="w-4 h-4" />
-                <span>Inquire via WhatsApp</span>
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 w-full">
+                <a
+                  href={`https://wa.me/919341874222?text=I%20am%20interested%20in%20the%20${encodeURIComponent(product.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-grow py-4 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                  <span>Inquiry (WA 1)</span>
+                </a>
+                <a
+                  href={`https://wa.me/919740423851?text=I%20am%20interested%20in%20the%20${encodeURIComponent(product.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-grow py-4 rounded-xl bg-accent text-black hover:opacity-90 font-bold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                  <span>Inquiry (WA 2)</span>
+                </a>
+              </div>
               <p className="text-[10px] text-page-muted mt-3 text-center leading-relaxed font-light font-sans">
                 No checkout. Pre-populated templates coordinate direct showroom inquiries for sizing and availability.
               </p>

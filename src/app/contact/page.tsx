@@ -71,9 +71,9 @@ export default function Contact() {
                 <div>
                   <h4 className="text-[9px] uppercase tracking-wider text-page-muted font-semibold">Address</h4>
                   <p className="text-sm text-page-primary mt-1.5 leading-relaxed font-light">
-                    M.S.K. Mill Road, Opposite Hanuman Temple,<br />
-                    Kalaburagi (Gulbarga),<br />
-                    Karnataka - 585102, India
+                    5677, Super Market, Chakkar Katta,<br />
+                    Maktampura, Kalaburagi,<br />
+                    Karnataka 585101
                   </p>
                 </div>
               </div>
@@ -86,16 +86,28 @@ export default function Contact() {
                 <div>
                   <h4 className="text-[9px] uppercase tracking-wider text-page-muted font-semibold">Phone Lines</h4>
                   <div className="text-sm text-page-primary mt-1.5 space-y-1 font-light">
-                    <a href="tel:+919845271830" className="block hover:text-accent transition-colors">+91 98452 71830</a>
-                    <a
-                      href="https://wa.me/919845271830"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
-                    >
-                      <FaWhatsapp className="w-4 h-4" />
-                      <span>Connect via WhatsApp</span>
-                    </a>
+                    <a href="tel:+919341874222" className="block hover:text-accent transition-colors">+91 93418 74222</a>
+                    <a href="tel:+919740423851" className="block hover:text-accent transition-colors">+91 97404 23851</a>
+                    <div className="flex flex-col space-y-1.5 pt-1">
+                      <a
+                        href="https://wa.me/919341874222"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                        <span>WhatsApp (Primary)</span>
+                      </a>
+                      <a
+                        href="https://wa.me/919740423851"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                        <span>WhatsApp (Secondary)</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMapPin, FiPhone, FiClock, FiShield, FiBriefcase } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import InteractiveMapPlaceholder from "@/components/sections/InteractiveMapPlaceholder";
+import CustomMap from "@/components/map/CustomMap";
 
 export default function VisitShowroom() {
   const showroomImages = [
@@ -75,9 +75,9 @@ export default function VisitShowroom() {
                 <div>
                   <h4 className="text-[10px] uppercase tracking-wider text-page-muted font-semibold">Address</h4>
                   <p className="text-sm text-page-primary mt-1.5 leading-relaxed font-light">
-                    M.S.K. Mill Road, Opposite Hanuman Temple,<br />
-                    Kalaburagi (Gulbarga),<br />
-                    Karnataka - 585102, India
+                    5677, Super Market, Chakkar Katta,<br />
+                    Maktampura, Kalaburagi,<br />
+                    Karnataka 585101
                   </p>
                 </div>
               </div>
@@ -103,16 +103,28 @@ export default function VisitShowroom() {
                 <div>
                   <h4 className="text-[10px] uppercase tracking-wider text-page-muted font-semibold">Direct Communication</h4>
                   <div className="text-sm text-page-primary mt-1.5 space-y-1.5 font-light">
-                    <a href="tel:+919845271830" className="block hover:text-accent transition-colors">+91 98452 71830</a>
-                    <a
-                      href="https://wa.me/919845271830"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
-                    >
-                      <FaWhatsapp className="w-4 h-4" />
-                      <span>Connect via WhatsApp</span>
-                    </a>
+                    <a href="tel:+919341874222" className="block hover:text-accent transition-colors">+91 93418 74222</a>
+                    <a href="tel:+919740423851" className="block hover:text-accent transition-colors">+91 97404 23851</a>
+                    <div className="flex flex-col space-y-1.5 pt-1">
+                      <a
+                        href="https://wa.me/919341874222"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                        <span>WhatsApp (Primary)</span>
+                      </a>
+                      <a
+                        href="https://wa.me/919740423851"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-1.5 text-emerald-500 hover:text-accent transition-colors"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                        <span>WhatsApp (Secondary)</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -125,7 +137,7 @@ export default function VisitShowroom() {
               <FiShield className="w-6 h-6 text-accent" />
               <h4 className="text-base font-light text-page-primary font-serif">Valet &amp; Parking</h4>
               <p className="text-xs text-page-secondary font-light leading-relaxed font-sans">
-                Dedicated parking slots are reserved for visitors on the M.S.K. Mill Road factory site. Secure gates are monitored 24/7.
+                Dedicated parking slots are reserved for visitors near the Super Market showroom site. Secure gates are monitored 24/7.
               </p>
             </div>
 
@@ -153,7 +165,7 @@ export default function VisitShowroom() {
             </p>
           </div>
 
-          <InteractiveMapPlaceholder />
+          <CustomMap />
         </section>
 
         {/* Showroom Images Gallery Section */}

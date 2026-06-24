@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -7,16 +7,10 @@ import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/layout/CustomCursor";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
-const cormorantSerif = Cormorant_Garamond({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const interSans = Inter({
+const montserrat = Montserrat({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400"],
 });
 
 export const metadata: Metadata = {
@@ -59,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interSans.variable} ${cormorantSerif.variable} h-full antialiased dark-theme`}
+      className={`${montserrat.variable} h-full antialiased dark-theme`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

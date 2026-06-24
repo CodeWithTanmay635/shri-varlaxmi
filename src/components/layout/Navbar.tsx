@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FiSun, FiMoon, FiX } from "react-icons/fi";
+import { FiSun, FiMoon, FiX, FiMenu } from "react-icons/fi";
 import {
   motion,
   AnimatePresence,
@@ -26,9 +26,8 @@ const navLinks = [
   { href: "/contact", label: "Contact", image: "/images/Gemini_Generated_Image_j0med9j0med9j0me.png" },
 ];
 
-// Pure smooth easing (no bounce/elasticity)
-const SMOOTH_EASE = [0.25, 0.1, 0.25, 1] as const;
-const ANIM_DURATION = 0.8;
+const ROLLS_EASE = [0.16, 1, 0.3, 1] as const;
+const ANIM_DURATION = 1.4;
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,12 +77,10 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
-    // Reset image to current path's image or default
     const currentLink = navLinks.find(l => l.href === pathname);
     if (currentLink) setHoveredImage(currentLink.image);
   }, [pathname]);
 
-  // Lock body scroll when overlay is open
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -101,77 +98,71 @@ export default function Navbar() {
     }
   };
 
-  // ── Overlay Animations ──
   const overlayVariants: Variants = {
     closed: { 
       opacity: 0, 
-      transition: { duration: ANIM_DURATION, ease: SMOOTH_EASE }
+      transition: { duration: 0.8, ease: ROLLS_EASE, staggerChildren: 0.05, staggerDirection: -1 }
     },
     open: { 
       opacity: 1, 
-      transition: { duration: ANIM_DURATION, ease: SMOOTH_EASE, staggerChildren: 0.08, delayChildren: 0.2 }
+      transition: { duration: 1.2, ease: ROLLS_EASE, staggerChildren: 0.08, delayChildren: 0.1 }
     }
   };
 
   const linkVariants: Variants = {
-    closed: { opacity: 0, y: 30 },
-    open: { opacity: 1, y: 0, transition: { duration: ANIM_DURATION, ease: SMOOTH_EASE } }
+    closed: { opacity: 0, y: "80%" },
+    open: { opacity: 1, y: "0%", transition: { duration: ANIM_DURATION, ease: ROLLS_EASE } }
   };
 
   const imageVariants: Variants = {
     initial: { opacity: 0, scale: 1.05 },
-    animate: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: SMOOTH_EASE } },
-    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.8, ease: SMOOTH_EASE } }
+    animate: { opacity: 1, scale: 1, transition: { duration: 1.6, ease: ROLLS_EASE } },
+    exit: { opacity: 0, scale: 0.98, transition: { duration: 1.0, ease: ROLLS_EASE } }
   };
 
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] z-[70] origin-left"
         style={{ scaleX, background: "var(--accent-gold)" }}
       />
 
+      {/* Main Standard Navbar */}
       <motion.nav
         variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
         animate={hidden && !isOpen ? "hidden" : "visible"}
-        transition={{ duration: 0.6, ease: SMOOTH_EASE }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-in-out ${
-          scrolled && !isOpen ? "py-4 glass-nav shadow-lg" : "py-8 bg-transparent"
+        transition={{ duration: 0.8, ease: ROLLS_EASE }}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-[1000ms] ease-in-out ${
+          scrolled ? "py-4 glass-nav shadow-lg" : "py-8 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link href="/" className="group flex flex-col justify-start relative z-50" onClick={() => setIsOpen(false)}>
+          <Link href="/" className="group flex flex-col justify-start">
             <span
-              className="text-lg md:text-xl font-light tracking-[0.3em] transition-all duration-500 group-hover:text-accent-gold"
-              style={{ color: isOpen ? "#FFFFFF" : "var(--text-primary)" }}
+              className="text-lg md:text-xl font-light tracking-[0.3em] transition-all duration-[1200ms] ease-[0.16,1,0.3,1] group-hover:text-accent-gold"
+              style={{ color: "var(--text-primary)" }}
             >
               SHRI VARALAKSHMI
             </span>
             <span 
-              className="text-[8px] md:text-[9px] tracking-[0.45em] uppercase font-medium mt-1 transition-colors duration-500" 
+              className="text-[8px] md:text-[9px] tracking-[0.45em] uppercase font-medium mt-1 transition-colors duration-[1200ms]" 
               style={{ color: "var(--accent-gold)" }}
             >
               Jewellery &amp; Metals
             </span>
           </Link>
 
-          {/* Right Utilities */}
-          <div className="flex items-center space-x-6 relative z-50">
-            
+          <div className="flex items-center space-x-6">
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: prefersReducedMotion ? 1 : 1.05 }}
               whileTap={{ scale: prefersReducedMotion ? 1 : 0.95 }}
-              className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-500 group ${
-                isOpen ? "border-white/20 bg-black/40 text-white" : ""
-              }`}
-              style={!isOpen ? {
+              className="w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-[1200ms] group"
+              style={{
                 borderColor: "var(--border-mid)",
                 background: "var(--glass-bg)",
                 color: "var(--text-secondary)",
-              } : undefined}
+              }}
               aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               <AnimatePresence mode="wait">
@@ -181,8 +172,8 @@ export default function Navbar() {
                     initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: -90, scale: 0.5 }}
                     animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotate: 0, scale: 1 }}
                     exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: 90, scale: 0.5 }}
-                    transition={{ duration: 0.3 }}
-                    className="group-hover:text-accent-gold transition-colors duration-300 flex"
+                    transition={{ duration: 0.5, ease: ROLLS_EASE }}
+                    className="group-hover:text-accent-gold transition-colors duration-500 flex"
                   >
                     <FiSun className="w-4 h-4" />
                   </motion.span>
@@ -192,8 +183,8 @@ export default function Navbar() {
                     initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: 90, scale: 0.5 }}
                     animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotate: 0, scale: 1 }}
                     exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: -90, scale: 0.5 }}
-                    transition={{ duration: 0.3 }}
-                    className="group-hover:text-black transition-colors duration-300 flex"
+                    transition={{ duration: 0.5, ease: ROLLS_EASE }}
+                    className="group-hover:text-black transition-colors duration-500 flex"
                   >
                     <FiMoon className="w-4 h-4" />
                   </motion.span>
@@ -201,33 +192,28 @@ export default function Navbar() {
               </AnimatePresence>
             </motion.button>
 
-            {/* Desktop Menu Text / Mobile Hamburger */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center space-x-3 transition-colors duration-300 focus:outline-none group"
+              onClick={() => setIsOpen(true)}
+              className="flex items-center space-x-3 transition-colors duration-[1200ms] focus:outline-none group"
             >
               <span 
                 className="hidden md:block text-xs uppercase tracking-[0.25em] font-medium transition-colors"
-                style={{ color: isOpen ? "#FFFFFF" : "var(--text-primary)" }}
+                style={{ color: "var(--text-primary)" }}
               >
-                {isOpen ? "Close" : "Menu"}
+                Menu
               </span>
               <div 
-                className="p-2 rounded-full transition-colors"
-                style={{ 
-                  color: isOpen ? "#FFFFFF" : "var(--text-primary)",
-                  background: isOpen ? "rgba(255,255,255,0.1)" : "transparent"
-                }}
+                className="p-2 rounded-full transition-colors duration-[1200ms]"
+                style={{ color: "var(--text-primary)", background: "transparent" }}
               >
-                {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+                <FiMenu className="w-6 h-6" />
               </div>
             </button>
-            
           </div>
         </div>
       </motion.nav>
 
-      {/* Full-screen Luxury Overlay */}
+      {/* Full-screen Cinematic Overlay (Rolls-Royce Style) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -235,64 +221,62 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-40 bg-[#080808]/95 backdrop-blur-3xl flex"
+            className="fixed inset-0 z-[60] bg-[#080808]/95 flex backdrop-blur-2xl"
           >
-            {/* Close Button top-left (mobile only, desktop uses header) */}
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="md:hidden absolute top-8 left-6 text-white/50 hover:text-white transition-colors z-50 p-2"
-            >
-              <FiX className="w-8 h-8" />
-            </button>
+            {/* Overlay Header */}
+            <div className="absolute top-0 left-0 w-full px-6 md:px-12 py-8 flex items-center justify-between z-50">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="flex items-center space-x-3 text-white/60 hover:text-white transition-colors duration-500 group"
+              >
+                <FiX className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-medium hidden md:block">Close</span>
+              </button>
+
+              <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center" onClick={() => setIsOpen(false)}>
+                <span className="text-sm md:text-base font-light tracking-[0.3em] text-white">
+                  SHRI VARALAKSHMI
+                </span>
+              </Link>
+              
+              <div className="w-[80px]"></div>
+            </div>
 
             {/* Left Column: Navigation Links */}
-            <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 pt-20 relative z-20">
-              <div className="flex flex-col space-y-6 md:space-y-8 w-full max-w-lg">
+            <div className="w-full lg:w-[45%] h-full flex flex-col justify-center items-end pr-8 md:pr-16 relative z-20 pt-16">
+              <div className="flex flex-col space-y-5 md:space-y-6 w-full max-w-[280px] text-right">
                 {navLinks.map((link) => {
                   const isRouteActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
                   const isHashActive = activeHash === link.href;
                   const isActive = isRouteActive || isHashActive;
 
                   return (
-                    <motion.div 
-                      variants={linkVariants} 
-                      key={link.href}
-                      className="border-b border-white/10 pb-6 md:pb-8"
-                      onMouseEnter={() => setHoveredImage(link.image)}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className={`group relative text-3xl md:text-5xl lg:text-6xl font-light font-serif tracking-tight block transition-colors duration-[800ms] ${
-                          isActive ? "text-accent-gold" : "text-white/60 hover:text-white"
-                        }`}
+                    <div key={link.href} className="overflow-hidden">
+                      <motion.div 
+                        variants={linkVariants}
+                        onMouseEnter={() => setHoveredImage(link.image)}
+                        className="py-1"
                       >
-                        <span className="relative z-10 block transition-all duration-[800ms] ease-[0.25,0.1,0.25,1] group-hover:tracking-[0.04em]">
-                          {link.label}
-                        </span>
-                        
-                        {/* Metallic Underline Hover Effect */}
-                        <span className="absolute -bottom-6 md:-bottom-8 left-0 w-full h-[1px] overflow-hidden">
-                          <span 
-                            className={`absolute top-0 left-0 h-full w-full bg-gradient-to-r from-transparent via-[#C8A55A] to-transparent transition-transform duration-[800ms] ease-[0.25,0.1,0.25,1] ${
-                              isActive ? "translate-x-0" : "-translate-x-[101%] group-hover:translate-x-0"
-                            }`}
-                          />
-                        </span>
-                      </Link>
-                    </motion.div>
+                        <Link
+                          href={link.href}
+                          onClick={(e) => handleNavClick(e, link.href)}
+                          className={`group block transition-colors duration-[1200ms] ease-[0.16,1,0.3,1] ${
+                            isActive ? "text-white" : "text-white/40 hover:text-white/80"
+                          }`}
+                        >
+                          <span className="relative z-10 block text-xs md:text-sm font-medium font-sans uppercase tracking-[0.2em] transition-all duration-[1200ms] ease-[0.16,1,0.3,1] group-hover:-translate-x-2 group-hover:tracking-[0.25em] origin-right">
+                            {link.label}
+                          </span>
+                        </Link>
+                      </motion.div>
+                    </div>
                   );
                 })}
               </div>
-              
-              <motion.div variants={linkVariants} className="mt-16 space-y-2">
-                <p className="text-[10px] tracking-[0.3em] text-white/40 uppercase">Email</p>
-                <a href="mailto:contact@shrivaralakshmi.com" className="text-sm text-white hover:text-accent-gold transition-colors font-light">contact@shrivaralakshmi.com</a>
-              </motion.div>
             </div>
 
-            {/* Right Column: Cinematic Image Crossfade */}
-            <div className="hidden lg:block w-1/2 h-full relative z-10 border-l border-white/5 bg-[#0a0a0a]">
+            {/* Right Column: Cinematic Image */}
+            <div className="hidden lg:block lg:w-[55%] h-full relative z-10 border-l border-white/10 bg-[#0a0a0a]">
               <AnimatePresence mode="popLayout">
                 <motion.div
                   key={hoveredImage}
@@ -306,12 +290,11 @@ export default function Navbar() {
                     src={hoveredImage}
                     alt="Navigation Preview"
                     fill
-                    className="object-cover grayscale brightness-75 contrast-125"
+                    className="object-cover grayscale brightness-50 contrast-125"
                     priority
                   />
-                  {/* Subtle vignette overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/80" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#080808] to-transparent w-1/4" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808] opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-transparent to-transparent opacity-90 w-1/2" />
                 </motion.div>
               </AnimatePresence>
             </div>

@@ -66,9 +66,9 @@ export default function Footer() {
               <li className="flex items-start space-x-3">
                 <FiMapPin className="w-4 h-4 text-accent-gold mt-1 shrink-0" />
                 <span className="leading-snug">
-                  M.S.K. Mill Road, Opposite Hanuman Temple,<br />
-                  Kalaburagi (Gulbarga),<br />
-                  Karnataka - 585102, India
+                  5677, Super Market, Chakkar Katta,<br />
+                  Maktampura, Kalaburagi,<br />
+                  Karnataka 585101
                 </span>
               </li>
               <li className="flex items-center space-x-3">
@@ -85,16 +85,25 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col space-y-3">
               <a
-                href="tel:+919845271830"
+                href="tel:+919341874222"
                 className="flex items-center space-x-3 text-sm hover:text-white transition-colors group"
               >
                 <span className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-accent-gold/40 group-hover:bg-accent-gold/5 transition-all">
                   <FiPhone className="w-4 h-4 text-accent-gold" />
                 </span>
-                <span>+91 98452 71830</span>
+                <span>+91 93418 74222</span>
               </a>
               <a
-                href="https://wa.me/919845271830"
+                href="tel:+919740423851"
+                className="flex items-center space-x-3 text-sm hover:text-white transition-colors group"
+              >
+                <span className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-accent-gold/40 group-hover:bg-accent-gold/5 transition-all">
+                  <FiPhone className="w-4 h-4 text-accent-gold" />
+                </span>
+                <span>+91 97404 23851</span>
+              </a>
+              <a
+                href="https://wa.me/919341874222"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 text-sm hover:text-white transition-colors group"
@@ -102,7 +111,18 @@ export default function Footer() {
                 <span className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-accent-gold/40 group-hover:bg-accent-gold/5 transition-all">
                   <FaWhatsapp className="w-4 h-4 text-emerald-500" />
                 </span>
-                <span>Connect via WhatsApp</span>
+                <span>WhatsApp (Primary)</span>
+              </a>
+              <a
+                href="https://wa.me/919740423851"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-sm hover:text-white transition-colors group"
+              >
+                <span className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-accent-gold/40 group-hover:bg-accent-gold/5 transition-all">
+                  <FaWhatsapp className="w-4 h-4 text-emerald-500" />
+                </span>
+                <span>WhatsApp (Secondary)</span>
               </a>
               <a
                 href="mailto:contact@shrivaralakshmi.com"

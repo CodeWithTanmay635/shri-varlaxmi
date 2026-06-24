@@ -207,15 +207,26 @@ export default function Gallery() {
                 </div>
 
                 <div className="pt-4 section-border-t flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={`https://wa.me/919845271830?text=I%20am%20interested%20in%20the%20${encodeURIComponent(galleryItems[activeIdx].name)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-grow py-3 px-6 rounded-xl bg-accent hover:opacity-90 text-black text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
-                  >
-                    <FaWhatsapp className="w-4 h-4" />
-                    <span>WhatsApp Inquiry</span>
-                  </a>
+                  <div className="flex flex-col flex-grow gap-2">
+                    <a
+                      href={`https://wa.me/919341874222?text=I%20am%20interested%20in%20the%20${encodeURIComponent(galleryItems[activeIdx].name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-3 px-6 rounded-xl bg-accent hover:opacity-90 text-black text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
+                    >
+                      <FaWhatsapp className="w-4 h-4" />
+                      <span>Inquiry (WA 1)</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/919740423851?text=I%20am%20interested%20in%20the%20${encodeURIComponent(galleryItems[activeIdx].name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-3 px-6 rounded-xl bg-accent hover:opacity-90 text-black text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center space-x-2"
+                    >
+                      <FaWhatsapp className="w-4 h-4" />
+                      <span>Inquiry (WA 2)</span>
+                    </a>
+                  </div>
 
                   <Link
                     href={`/product/${galleryItems[activeIdx].id}`}
