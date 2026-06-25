@@ -16,25 +16,28 @@
 # next.js
 /.next/
 /out/
+/.turbo/
+
+# backend
+/backend/target/
 
 # production
 /build
 
-# misc
+# env files
+.env
+.env.local
+.env.*
+!.env.example
+
+# ide and misc
+.vscode/
+.idea/
 .DS_Store
+Thumbs.db
+*.log
+.cache/
 *.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo

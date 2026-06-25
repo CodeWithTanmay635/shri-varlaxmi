@@ -125,13 +125,13 @@ export default function Footer() {
                 <span>WhatsApp (Secondary)</span>
               </a>
               <a
-                href="mailto:contact@shrivaralakshmi.com"
+                href="mailto:golekar.srinivas@gmail.com"
                 className="flex items-center space-x-3 text-sm hover:text-white transition-colors group"
               >
                 <span className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-accent-gold/40 group-hover:bg-accent-gold/5 transition-all">
                   <FiMail className="w-4 h-4 text-accent-gold" />
                 </span>
-                <span>contact@shrivaralakshmi.com</span>
+                <span>golekar.srinivas@gmail.com</span>
               </a>
             </div>
           </div>

@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiPhone, FiMail, FiMapPin, FiClock, FiSend, FiCheckCircle } from "react-icons/fi";
+import { FiPhone, FiMail, FiMapPin, FiClock, FiSend, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { submitContactMessage, type ContactApiError } from "@/services/contactApi";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,15 +16,23 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setError(null);
+
+    try {
+      await submitContactMessage(formData);
       setIsSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+    } catch (err: unknown) {
+      const apiError = err as ContactApiError;
+      setError(apiError.message || "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (
@@ -31,6 +40,8 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing again
+    if (error) setError(null);
   };
 
   return (
@@ -120,8 +131,8 @@ export default function Contact() {
                 <div>
                   <h4 className="text-[9px] uppercase tracking-wider text-page-muted font-semibold">Email</h4>
                   <p className="text-sm text-page-primary mt-1.5 font-light">
-                    <a href="mailto:contact@shrivaralakshmi.com" className="hover:text-accent transition-colors">
-                      contact@shrivaralakshmi.com
+                    <a href="mailto:golekar.srinivas@gmail.com" className="hover:text-accent transition-colors">
+                      golekar.srinivas@gmail.com
                     </a>
                   </p>
                 </div>
@@ -158,6 +169,23 @@ export default function Contact() {
                     <p className="text-xs text-page-muted leading-relaxed font-light">
                       Please supply details below. Our showroom managers will review and coordinate within one business day.
                     </p>
+
+                    {/* Error Banner */}
+                    <AnimatePresence>
+                      {error && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="flex items-start space-x-3 p-4 rounded-xl border border-red-500/20 bg-red-500/5 overflow-hidden"
+                        >
+                          <FiAlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                          <p className="text-xs text-red-400 leading-relaxed normal-case tracking-normal font-normal">
+                            {error}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
