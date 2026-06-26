@@ -167,5 +167,5 @@ User fills contact form
         ├──→ JPA save to DB
         └──→ NotificationService.sendNotificationAsync()
                   ↓
-            Gmail SMTP → golekar.srinivas@gmail.com
+            Gmail SMTP → shri.varlaxmi1625@gmail.com
 ```
