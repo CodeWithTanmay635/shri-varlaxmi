@@ -51,18 +51,6 @@ export default function RouteLayer({ map, route }: RouteLayerProps) {
       });
     }
 
-    // Optional: Fly to fit the route bounds
-    if (route.geometry.coordinates.length > 0) {
-      const bounds = new maplibregl.LngLatBounds();
-      route.geometry.coordinates.forEach((coord) => {
-        bounds.extend(coord as [number, number]);
-      });
-      
-      map.fitBounds(bounds, {
-        padding: 50,
-        duration: 1000, // Smooth transition
-      });
-    }
 
     return () => {
       // Cleanup on unmount or route change if we want
