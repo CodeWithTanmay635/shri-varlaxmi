@@ -22,6 +22,13 @@ The custom cursor (`CustomCursor.tsx`) replaces the default OS cursor with a hig
 - **Layout Shell:** Next.js 16's App Router allows defining a global `layout.tsx`. The `Navbar` (header) and `Footer` are instantiated here, meaning they persist across route changes without re-rendering.
 - **Pages:** Each directory inside `app/` (e.g., `about/`, `contact/`, `product/[id]`) represents a route. They are server-rendered by default (React Server Components), improving initial load times and SEO.
 
+## How Pages Render Without HTML
+Unlike traditional websites where you write `.html` files, this project uses **React** and **JSX (TypeScript XML)**. 
+- **JSX/TSX:** Instead of raw HTML, developers write UI components using TSX (`.tsx` files). This syntax allows embedding JavaScript logic directly inside markup.
+- **Compilation:** Before running in the browser, tools (like Webpack/Turbopack under Next.js) compile this TSX code into highly optimized, pure JavaScript.
+- **Dynamic DOM:** When the JavaScript executes in the browser, React dynamically constructs the Document Object Model (DOM) and mounts elements on the screen.
+- **Server-Side Rendering (SSR):** Because we use **Next.js**, the server actually executes the React code first, generates a static HTML string, and sends it to the browser for instant loading. Once the browser downloads the JavaScript bundle, React "hydrates" this static HTML, making it interactive without needing traditional HTML files in the codebase.
+
 ## Why TypeScript?
 TypeScript was chosen to ensure **Type Safety** and prevent runtime errors. It allows defining exact data structures for API responses (like `ContactMessage`), props for UI components, and strict states for the cursor (e.g., `CursorState` type). It drastically improves developer experience through better autocomplete and self-documenting code.
 
