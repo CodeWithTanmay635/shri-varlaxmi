@@ -139,8 +139,10 @@ export default function Footer() {
 
         {/* Lower row */}
         <div className="border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <div>
-            &copy; {currentYear} Shri Varalakshmi Jewellery and Metals. All rights reserved.
+          <div className="text-center md:text-left flex flex-col md:flex-row items-center">
+            <span>&copy; {currentYear} Shri Varalakshmi Jewellery and Metals. All rights reserved.</span>
+            <span className="hidden md:inline mx-2 text-white/10">|</span>
+            <span className="mt-2 md:mt-0">Designed by <span className="text-accent-gold/80">Tanmay Pansare</span></span>
           </div>
           <div className="flex space-x-6">
             <Link href="/privacy" className="hover:text-accent-gold transition-colors">
